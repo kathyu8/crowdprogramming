@@ -1,0 +1,21 @@
+body, .navbar-default {
+	background-color: #f2efe8;
+}
+
+.jumbotron, .navbar {
+	margin-bottom: 0px;
+}
+
+img, .img-responsive {
+	width: 100%;
+}
+
+#images > .col-lg-10, #images >.col-md-10 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-top:15px;
+    padding-bottom:15px;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kathy's AMT Website</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<p class="navbar-brand" href="#">Count the People</p>	
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row no-gutter">
+			<div class="col-lg-4 col-md-4" style="background-color:#dbe9d8">
+				<h3><strong>A</strong>lgorithms will be used to check guessing</h3>
+			</div>	
+			<div class="col-lg-4 col-md-4" style="background-color:#c2d4d8">
+				<h3><strong>B</strong>onus $0.05 per picture to answers closest to average</h3>
+			</div>
+			<div class="col-lg-4 col-md-4" style="background-color:#b0aac2">
+				<h3><strong>C</strong>ount people like tagging friends on Facebook</h3>
+			</div>
+		</div>
+
+		<h3>Let's try an example</h3>
+		<h4>How many people are in this photo?</h4>
+		<div class="row">
+			<div class="col-lg-10 col-md-10 col-sm-10">
+				<img src="images/example1.jpg" class="img-responsive"></img>	
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2">
+				<h2>Your Count</h2>
+				<form id="example_form_1">
+					<div class="form-group">
+						<input type="number" class="form-control" id="example_input_1" placeholder="0">
+					</div>
+				</form>
+				<button class="btn btn-primary" id="example_submit_1">Submit</button>
+			</div>
+		</div>
+		<hr>
+		<h3>One more just for good measure.</h3>
+		<div class="row">
+			<div class="col-lg-10 col-md-10 col-sm-10">
+				<img src="images/example2.JPG" class="img-responsive"></img>	
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2">
+				<h2>Your Count</h2>
+				<form id="example_form_2">
+					<div class="form-group">
+						<input type="number" class="form-control" id="example_input_2" placeholder="0">
+					</div>
+				</form>
+				<button class="btn btn-primary" id="example_submit_2">Submit</button>
+			</div>
+		</div>
+		<hr>
+		<h3>Don't forget to accept the HIT!</h3>
+		<a href="task.html"><button class="btn btn-primary" id="next_button" style="width:100%" disabled>Let's Get Started!</button></a>
+		<hr>
+	</div>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/mturk.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+</body>
+</html>
