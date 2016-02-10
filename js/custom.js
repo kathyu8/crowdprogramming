@@ -56,7 +56,7 @@ function task_submit(submit, input_field, form, picture_num){
 			$("#task_form_" + (picture_num + 1)).show();
 			setTimeout(function(){
 				$("#picture_submit_" + (picture_num+1)).disable(false);
-			}, 000);
+			}, 3000);
 		}
 	})
 }
@@ -74,7 +74,7 @@ for(i = 1; i <= TOTAL_PICTURES + 1; i++){
 
 setTimeout(function(){
 	$("#picture_submit_1").disable(false);
-}, 000);
+}, 3000);
 $("#images").hide();
 $("#next_button").click(function(e){
 	$("#examples").hide();
