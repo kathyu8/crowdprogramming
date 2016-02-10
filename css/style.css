@@ -19,3 +19,7 @@ img, .img-responsive {
     padding-top:15px;
     padding-bottom:15px;
 }
+
+.btn, .btn-primary {
+	margin-top: 20px;
+}
