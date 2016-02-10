@@ -50,7 +50,7 @@ function task_submit(submit, input_field, form, picture_num){
 			$(".alert").remove();
 		}
 
-		if(input_field.val() <= 0 || !parseInt(input_field.val(), 10)){
+		if(input_field.val() <= 0 || (input_field.val() ==parseInt(input_field.val(), 10))) {
 			form.append("<div class='alert alert-danger' role=[alert]>You must put in an integer.</div>");
 		}
 		else { 
@@ -59,7 +59,7 @@ function task_submit(submit, input_field, form, picture_num){
 			$("#picture_" + (picture_num + 1)).show();
 			setTimeout(function(){
 				$("#picture_submit_" + (picture_num+1)).disable(false);
-			}, 2000);
+			}, 3000);
 		}
 	})
 }
@@ -76,4 +76,4 @@ for(i = 1; i <= TOTAL_PICTURES; i++){
 
 setTimeout(function(){
 	$("#picture_submit_1").disable(false);
-}, 2000);
+}, 3000);
