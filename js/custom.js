@@ -26,7 +26,6 @@ function example_submit(submit, form, input, value) {
 		if(input.val() != value){
 			form.append("<div class='alert alert-danger' role=[alert]>That is not the correct answer. Count again.</div>");
 		}
-
 		else {
 			form.append("<div class='alert alert-success' role=[alert]>Correct!</div>");
 			training_num++;
@@ -76,3 +75,8 @@ for(i = 1; i <= TOTAL_PICTURES + 1; i++){
 setTimeout(function(){
 	$("#picture_submit_1").disable(false);
 }, 000);
+$("#images").hide();
+$("#next_button").click(function(e){
+	$("#examples").hide();
+	$("#images").show();
+});
