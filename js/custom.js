@@ -53,9 +53,11 @@ function task_submit(submit, input_field, form, picture_num){
 			console.log("Picture " + picture_num + ": " + input_field.val());
 			$("#picture_" + picture_num).hide();
 			$("#picture_" + (picture_num + 1)).show();
+			$("#task_form_" + picture_num).hide();
+			$("#task_form_" + (picture_num + 1)).show();
 			setTimeout(function(){
 				$("#picture_submit_" + (picture_num+1)).disable(false);
-			}, 3000);
+			}, 000);
 		}
 	})
 }
@@ -64,12 +66,13 @@ function task_submit(submit, input_field, form, picture_num){
 for(i = 1; i <= TOTAL_PICTURES + 1; i++){
 	if(i != 1){
 		$("#picture_"+i).hide();
+		$("#task_form_"+i).hide();
 	}
 	if(i != TOTAL_PICTURES + 1){
-		task_submit($("#picture_submit_" + i), $("#form_input_" + i), $(".task_form_" + (i+1)), i);
+		task_submit($("#picture_submit_" + i), $("#form_input_" + i), $("#task_form_" + (i+1)), i);
 	}	
 }
 
 setTimeout(function(){
 	$("#picture_submit_1").disable(false);
-}, 3000);
+}, 000);
