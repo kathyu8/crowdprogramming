@@ -46,12 +46,8 @@ function task_submit(submit, input_field, form, picture_num){
 	submit.click(function(e){
 		e.preventDefault();
 
-		if($(".alert").exists()) {
-			$(".alert").remove();
-		}
-
-		if(input_field.val() <= 0 || (input_field.val() ==parseInt(input_field.val(), 10))) {
-			form.append("<div class='alert alert-danger' role=[alert]>You must put in an integer.</div>");
+		if(input_field.val() <= 0 || (input_field.val() !=parseInt(input_field.val(), 10))) {
+			alert("You must put in an integer.");
 		}
 		else { 
 			console.log("Picture " + picture_num + ": " + input_field.val());
@@ -65,12 +61,12 @@ function task_submit(submit, input_field, form, picture_num){
 }
 
 // Attach Submit listener and hide other pictures
-for(i = 1; i <= TOTAL_PICTURES; i++){
+for(i = 1; i <= TOTAL_PICTURES + 1; i++){
 	if(i != 1){
 		$("#picture_"+i).hide();
 	}
-	if(i != TOTAL_PICTURES){
-		task_submit($("#picture_submit_" + i), $("#form_input_" + i), $(".task_form_" + 1), i);
+	if(i != TOTAL_PICTURES + 1){
+		task_submit($("#picture_submit_" + i), $("#form_input_" + i), $(".task_form_" + (i+1)), i);
 	}	
 }
 
