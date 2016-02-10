@@ -70,7 +70,7 @@ for(i = 1; i <= TOTAL_PICTURES; i++){
 		$("#picture_"+i).hide();
 	}
 	if(i != TOTAL_PICTURES){
-		task_submit($("#picture_submit_" + i), $("#form_input_" + i), $("#task_form_" + 1), i);
+		task_submit($("#picture_submit_" + i), $("#form_input_" + i), $(".task_form_" + 1), i);
 	}	
 }
 
