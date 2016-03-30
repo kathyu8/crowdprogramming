@@ -1,14 +1,30 @@
 var board_width = 5;
 var board = [];
+var board_length = board_width * 3;
 
 // Randomized the board, width is adjustable and comets appear at a rate of 20%
 function randomizeBoard() {
-	for(var i = 0; i < board_width * 2; i++) {
+	// Create board
+	for(var i = 0; i < board_length; i++) {
 		row = []
 		for(var j = 0; j < board_width; j++) {
-			row[j] = (Math.random() < 0.20) ? 1 : 0; 
+			row[j] = (Math.random() < 0.18) ? 1 : 0; 
 		}
 		board[i] = row;
+	}
+
+	// Checks to make sure there's no path without comets
+	for(var j = 0; j < board_width; j++) {
+		var hasComet = false;
+		for(var i = 0; i < board_length; i++) {
+			if(board[i][j]) {
+				hasComet = true;
+				break;
+			}
+		}
+		if(!hasComet) { 
+			board[Math.floor(Math.random() * board_length)][j] = 1; 
+		}
 	}
 	console.log(board)
 }
@@ -16,7 +32,6 @@ function randomizeBoard() {
 randomizeBoard();
 
 var cell_width = 100; // pixels
-// var board_width = board[0].length;
 $("#board").height(board_width * cell_width)
 			.width(board_width * cell_width);
 
