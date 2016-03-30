@@ -122,7 +122,7 @@ function startGame() {
 		}
 
 		// End Game if player reaches $2
-		if(money == 2.0) endGame(money);
+		if(money.toFixed(3) == 2.0) endGame(money);
 	}, 50);
 }
 
