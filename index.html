@@ -1,123 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Kathy's AMT Website</title>
-	<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<title>Avoid the Comets!</title>
+	<script type="text/javascript" src="jquery-2.2.2.min.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<!-- Header -->
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<p class="navbar-brand" href="#">Count the People</p>
+				<p class="navbar-brand" href="#">Avoid the Comets!</p>
 			</div>
 		</div>
 	</nav>
-	<div class="container-fluid">
-		<div class="row no-gutter">
-			<div class="col-lg-4 col-md-4" style="background-color:#dbe9d8">
-				<h3><strong>A</strong>lgorithms will be used to check guessing</h3>
-			</div>	
-			<div class="col-lg-4 col-md-4" style="background-color:#c2d4d8">
-				<h3><strong>B</strong>onus $0.05 per picture with answers closest to average</h3>
+	
+	<!-- Instructions -->
+	<div class="container">
+		<h3>Instructions</h3>
+		<div class="row">
+			<div class="col-md-6 col-lg-6">
+				<p>You're one of the last dinosours on earth. Avoid going extinct by avoiding the falling meteors by moving your spaceship left and right with arrow keys.</p>
+				<p><strong>By the way, </strong>the dinosaur wraps around the board.</p>
+				<p>For each second you survive, you will earn $0.001 until you earn $2.00.</p>
+				<p>Press "Begin" to start playing.</p>
+				<p><strong>BUT, </strong> don't forget to accept the HIT before playing!</p>
 			</div>
-			<div class="col-lg-4 col-md-4" style="background-color:#b0aac2">
-				<h3><strong>C</strong>ount people like tagging friends on Facebook</h3>
-			</div>
-		</div>
-
-		<div id="examples">
-			<h3>Let's try an example</h3>
-			<h4>How many people are in this photo?</h4>
-			<div class="row">
-				<div class="col-lg-10 col-md-10 col-sm-10">
-					<img src="images/example1.jpg" class="img-responsive"></img>	
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-2">
-					<h2>Your Count</h2>
-					<form id="example_form_1">
-						<div class="form-group">
-							<input type="number" class="form-control" id="example_input_1" placeholder="0">
-							<button class="btn btn-primary" id="example_submit_1">Submit</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			<hr>
-			<h3>One more just for good measure.</h3>
-			<div class="row">
-				<div class="col-lg-10 col-md-10 col-sm-10">
-					<img src="images/example2.JPG" class="img-responsive"></img>	
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-2">
-					<h2>Your Count</h2>
-					<form id="example_form_2">
-						<div class="form-group">
-							<input type="number" class="form-control" id="example_input_2" placeholder="0">
-							<button class="btn btn-primary" id="example_submit_2">Submit</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			<hr>
-			<h3>Don't forget to accept the HIT!</h3>
-			<button class="btn btn-primary" id="next_button" style="width:100%" disabled>Let's Get Started!</button>
-			<hr>
-		</div>
-
-		<div id="images">
-			<!-- Picture 1 -->
-			<div class="row">
-				<div class="col-lg-10 col-md-10 col-sm-10">
-					<img src="images/people1.jpg" class="img-responsive" id="picture_1"></img>	
-					<img src="images/people2.png" class="img-responsive" id="picture_2"></img>
-					<img src="images/people3.jpg" class="img-responsive" id="picture_3"></img>
-					<img src="images/people4.jpg" class="img-responsive" id="picture_4"></img>
-					<img src="images/people5.jpg" class="img-responsive" id="picture_5"></img>
-					<img src="images/people6.jpg" class="img-responsive" id="picture_6"></img>
-					<img src="images/people7.jpg" class="img-responsive" id="picture_7"></img>
-				</div>
-				<div class="col-lg-2 col-md-2 col-sm-2">
-					<h2>Your Count</h2>
-					<form id="mturk_form" name="mturk_form" method="POST">
-						<div class="form-group" id="task_form_1">
-							<input type="number" class="form-control" name="photo_1" id="form_input_1" placeholder="0">
-							<input type="button" class="btn btn-primary" value="Next" id="picture_submit_1" disabled>
-						</div>
-						<div class="form-group" id="task_form_2">
-							<input type="number" class="form-control" name="photo_2" id="form_input_2" placeholder="0">
-							<input type="button" class="btn btn-primary" value="Next" id="picture_submit_2" disabled>
-						</div>
-						<div class="form-group" id="task_form_3">
-							<input type="number" class="form-control" name="photo_3" id="form_input_3" placeholder="0">
-							<input type="button" class="btn btn-primary" value="Next" id="picture_submit_3" disabled>
-						</div>
-						<div class="form-group" id="task_form_4">
-							<input type="number" class="form-control" name="photo_4" id="form_input_4" placeholder="0">
-							<input type="button" class="btn btn-primary" value="Next" id="picture_submit_4" disabled>
-						</div>
-						<div class="form-group" id="task_form_5">
-							<input type="number" class="form-control" name="photo_5" id="form_input_5" placeholder="0">
-							<input type="button" class="btn btn-primary" value="Next" id="picture_submit_5" disabled>
-						</div>
-						<div class="form-group" id="task_form_6">
-							<input type="number" class="form-control" name="photo_6" id="form_input_6" placeholder="0">
-							<input type="button" class="btn btn-primary" value="Next" id="picture_submit_6" disabled>
-						</div>
-						<div class="form-group" id="task_form_7">
-							<input type="number" class="form-control" name="photo_7" id="form_input_7" placeholder="0">
-							<input type="submit" class="btn btn-primary" value="Submit" id="submit">
-						</div>
-					</form>
-				</div>
-			<hr>
+			<div class="col-md-6 col-lg-6">
+				<img src="dinosaur.png" height="100px" width="100px" style="margin-right: 30px;">
+				<img src="comet.png" height="100px" width="100px" style="margin-right:30px;">
+				<button type="button" class="btn btn-primary btn-large" id="begin_game">Begin</button>
 			</div>
 		</div>
 		<hr>
 	</div>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/mturk.js"></script>
-	<script type="text/javascript" src="js/custom.js"></script>
+
+	<!-- Game -->
+	<div class="container" id="game">
+		<div class="row">
+			<div class="col-sm-8 col-md-8 col-lg-8">
+				<div id="board"></div>
+			</div>
+			<div class="col-sm-4 col-md-4 col-lg-4" id="money">
+				<form id="mturk_form" name="mturk_form" method="POST">
+					<div class="well well-sm form-group">
+						<h3 type="number" name="amount" id="amount">$0.000</h3>
+					</div>
+					<input type="hidden" name="cookie" id="cookie">
+					<input type="hidden" name="time" id="time">
+					<input type="submit" class="btn btn-danger" value="Quit" id="quit_game">
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Ending Screen -->
+	<div class="container" id="thank_you">
+		<h3>Thank you for playing! :)</h3>
+		<h4 id="amount_earned"></h4>
+	</div>
+
+	<script type="text/javascript" src="mturk.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
