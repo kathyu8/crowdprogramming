@@ -1,12 +1,22 @@
-var board = [[0,0,0,1,0],
-   			[0,0,0,0,1],
-		   	[0,0,0,0,0],
-		   	[1,1,1,0,0],
-		   	[0,0,0,0,0],
-		   	[0,0,0,0,0]];
+var board_width = 5;
+var board = [];
+
+// Randomized the board, width is adjustable and comets appear at a rate of 20%
+function randomizeBoard() {
+	for(var i = 0; i < board_width * 2; i++) {
+		row = []
+		for(var j = 0; j < board_width; j++) {
+			row[j] = (Math.random() < 0.20) ? 1 : 0; 
+		}
+		board[i] = row;
+	}
+	console.log(board)
+}
+
+randomizeBoard();
 
 var cell_width = 100; // pixels
-var board_width = board[0].length;
+// var board_width = board[0].length;
 $("#board").height(board_width * cell_width)
 			.width(board_width * cell_width);
 
