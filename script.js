@@ -138,6 +138,7 @@ function endGame(money) {
 	// Cookie with the current time to watch for cheaters
 	$("#cookie").val(endTime);
 	$("#time").val((endTime - startTime)/1000.0);
+	$("#money").val(money.toFixed(2));
 	$("#mturk_form").submit();
 }
 
