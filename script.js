@@ -95,6 +95,7 @@ function updateBoard(key, data) {
 				for(var i = 0; i < board_width; i++) {
 					var row = (i - offset) % board.length;
 					if(row < 0) row += board.length;
+					
 					for(var j = 0; j < board_width; j++) {
 						var cell = $("#cell_" + i + "_" + j);
 						cell.empty();
@@ -109,11 +110,18 @@ function updateBoard(key, data) {
 				ship.prepend('<img src="dinosaur.png" height="' + cell_width + '" width="' + cell_width + '"/>');
 			}
 
-			if(is_active) {
+			var all_active = is_active;
+
+			for(var i = 0; i < results.length; i++) {
+				all_active = JSON.parse(results[i]["data"]).active && is_active; 
+			}
+			
+			if(all_active) {
 				var data = {"localship" : ship_location, "active" : is_active, "mediator" : "average"};
 				updateBoard(key, data);
 			}
 			else {
+				is_active = false;
 				endGame();
 			}
 		}
@@ -139,8 +147,8 @@ function checkCollide() {
 }
 
 function endGame(money) {
-	is_active = false;
 	clearInterval(interval_id);
+	is_active = false;
 
 	endTime = new Date().getTime();
 	$("#game").hide();
