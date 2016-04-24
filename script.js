@@ -112,7 +112,10 @@ function updateBoard(key, data) {
 
 			var all_active = is_active;
 
+			console.log(results);
+
 			for(var i = 0; i < results.length; i++) {
+				console.log(JSON.parse(results[i]["data"]).active);
 				all_active = JSON.parse(results[i]["data"]).active && is_active; 
 			}
 			
@@ -122,6 +125,8 @@ function updateBoard(key, data) {
 			}
 			else {
 				is_active = false;
+				var data = {"localship" : ship_location, "active" : is_active, "mediator" : "average"};
+				// updateBoard(key, data);
 				endGame();
 			}
 		}
