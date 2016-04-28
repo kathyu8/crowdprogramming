@@ -2,7 +2,7 @@ var board = [[0,0,0,1,0],
 		   	[0,0,0,0,1],
 	 	   	[0,0,0,0,0],
 	 	   	[0,0,0,0,0],
-		   	[1,1,1,0,0],
+		   	[0,1,1,0,0],
 		   	[0,0,0,0,0],
 		   	[0,0,0,0,0]];
 
@@ -57,6 +57,8 @@ var offset, prev_offset, interval_id, startTime, endTime = 0;
 var money = 0.000;
 
 var is_active = false;
+var key = "bulbasaur";
+var mediator = gup("mediator");
 
 // Animating the board
 function startGame() {
@@ -70,8 +72,7 @@ function startGame() {
 	checkCollide(); 
 
 	// start animating the board
-	var data = {"localship" : ship_location, "active" : is_active, "mediator" : "average"};
-	var key = "bulbasaur";
+	var data = {"localship" : ship_location, "active" : is_active};
 	updateBoard(key, data);
 }
 
@@ -88,7 +89,21 @@ function updateBoard(key, data) {
   		success: function(response) {
   			
   			var results = response["results"];
-			
+			console.log(results);
+			console.log(response["count"]);
+			var all_active = is_active;
+
+			for(var i = 0; i < response["count"]; i++) {
+				// console.log("parse = " + JSON.parse(results[i]["data"]).active);
+				// console.log("is_active = " + is_active);
+				all_active = JSON.parse(results[i]["data"]).active && is_active; 
+			}
+
+			if(!all_active) {
+				is_active = false;
+				endGame();
+			}
+
 			if(offset != Math.floor(response["time"] % board.length)) {
 				offset = Math.floor(response["time"] % board.length);
 				
@@ -110,25 +125,8 @@ function updateBoard(key, data) {
 				ship.prepend('<img src="dinosaur.png" height="' + cell_width + '" width="' + cell_width + '"/>');
 			}
 
-			var all_active = is_active;
-
-			console.log(results);
-
-			for(var i = 0; i < results.length; i++) {
-				console.log(JSON.parse(results[i]["data"]).active);
-				all_active = JSON.parse(results[i]["data"]).active && is_active; 
-			}
-			
-			if(all_active) {
-				var data = {"localship" : ship_location, "active" : is_active, "mediator" : "average"};
-				updateBoard(key, data);
-			}
-			else {
-				is_active = false;
-				var data = {"localship" : ship_location, "active" : is_active, "mediator" : "average"};
-				// updateBoard(key, data);
-				endGame();
-			}
+			var data = {"localship" : ship_location, "active" : is_active};
+			updateBoard(key, data);
 		}
 	});
 }
@@ -140,20 +138,49 @@ function checkCollide() {
 		var bottom_row = (offset + 4) % board.length;
 		
 		if(board[bottom_row][ship_location]) {
+			is_active = false;
 			endGame(money);
 		}
 
 		// End Game if player reaches $2
 		money += 0.001;
 		$("#amount").text("$" + money.toFixed(3));
-		if(money >= 2.0) endGame(money);
-		
+		if(money >= 2.0) {
+			is_active = false;
+			endGame(money);
+		}
 	} ,1000);
+}
+
+function getMediator(result) {
+	var total = 0;
+	var count = 0;
+	// Average
+	if(mediator == "average"){
+		for(var i = 0; i < result.length; i++){
+			total += parseInt(JSON.parse(result[i]["data"]).localShip);
+			count++;
+		}
+	}
+	// Finds the mode
+	else{
+		for(var i = 0; i < result.length; i++){
+			var current = JSON.parse(result[i]["data"]);
+			if (parseInt(current.idle) <= 5){
+				total += parseInt(current.ship) * (Math.floor(parseInt(current.reputation)/10)+1);
+				count += (Math.floor(parseInt(current.reputation)/10))+1;
+			}
+			else if (result.length == 1){
+				count++;
+				total += parseInt(JSON.parse(result[i]["data"]).localShip);
+			}
+		}
+	}
+	return Math.floor(total/count);
 }
 
 function endGame(money) {
 	clearInterval(interval_id);
-	is_active = false;
 
 	endTime = new Date().getTime();
 	$("#game").hide();
