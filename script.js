@@ -2,7 +2,7 @@ var board = [[0,0,0,1,0],
 		   	[0,0,0,0,1],
 	 	   	[0,0,0,0,0],
 	 	   	[0,0,0,0,0],
-		   	[0,1,1,0,0],
+		   	[1,1,1,0,0],
 		   	[0,0,0,0,0],
 		   	[0,0,0,0,0]];
 
@@ -124,7 +124,7 @@ function updateBoard(key, data) {
 			}
 
 			$(".pterodactyl").removeClass("pterodactyl");
-			
+
 			var pteradactyl_position = getMediator(results);
 			var bottom_row = (offset + 4) % board.length;
 			$("#cell_4" + "_" + pteradactyl_position).addClass("pterodactyl");
