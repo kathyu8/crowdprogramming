@@ -182,6 +182,21 @@ function getMediator(result) {
 function endGame(money) {
 	clearInterval(interval_id);
 
+	var data = {"localship" : ship_location, "active" : false};
+
+	$.ajax({
+		url: "http://codingthecrowd.com/counter.php", 
+		dataType: "jsonp",
+		data: {
+			key: key,
+			data: JSON.stringify(data)
+		},
+  		success: function(response) {
+  			console.log("END GAME!!!");
+  			console.log(response);
+  		}
+  	});
+
 	endTime = new Date().getTime();
 	$("#game").hide();
 	$("#thank_you").show();
