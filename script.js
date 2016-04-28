@@ -89,13 +89,11 @@ function updateBoard(key, data) {
   		success: function(response) {
   			
   			var results = response["results"];
-			console.log(results);
+			// console.log(results);
 			console.log(response["count"]);
 			var all_active = is_active;
 
 			for(var i = 0; i < response["count"]; i++) {
-				// console.log("parse = " + JSON.parse(results[i]["data"]).active);
-				// console.log("is_active = " + is_active);
 				all_active = JSON.parse(results[i]["data"]).active && is_active; 
 			}
 
@@ -124,6 +122,12 @@ function updateBoard(key, data) {
 				ship.empty();
 				ship.prepend('<img src="dinosaur.png" height="' + cell_width + '" width="' + cell_width + '"/>');
 			}
+
+			$(".pterodactyl").removeClass("pterodactyl");
+			
+			var pteradactyl_position = getMediator(results);
+			var bottom_row = (offset + 4) % board.length;
+			$("#cell_4" + "_" + pteradactyl_position).addClass("pterodactyl");
 
 			var data = {"localship" : ship_location, "active" : is_active};
 			updateBoard(key, data);
@@ -155,28 +159,28 @@ function checkCollide() {
 function getMediator(result) {
 	var total = 0;
 	var count = 0;
-	// Average
+	// Find the average
 	if(mediator == "average"){
 		for(var i = 0; i < result.length; i++){
-			total += parseInt(JSON.parse(result[i]["data"]).localShip);
+			console.log("total =", total);
+			console.log("count =", count);
+			total += parseInt(JSON.parse(result[i]["data"]).localship);
 			count++;
+			console.log("total =", total);
+			console.log("count =", count);
 		}
+		console.log("mediator = ", Math.floor(total/count));
+		return Math.floor(total/count);
 	}
 	// Finds the mode
 	else{
+		var locations = [0,0,0,0,0];
 		for(var i = 0; i < result.length; i++){
-			var current = JSON.parse(result[i]["data"]);
-			if (parseInt(current.idle) <= 5){
-				total += parseInt(current.ship) * (Math.floor(parseInt(current.reputation)/10)+1);
-				count += (Math.floor(parseInt(current.reputation)/10))+1;
-			}
-			else if (result.length == 1){
-				count++;
-				total += parseInt(JSON.parse(result[i]["data"]).localShip);
-			}
+			var localship = JSON.parse(result[i]["data"].localship);
+			locations[localship]++;
 		}
+		return locations.indexOf(Math.max.apply(Math, locations));
 	}
-	return Math.floor(total/count);
 }
 
 function endGame(money) {
